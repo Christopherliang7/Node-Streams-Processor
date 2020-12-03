@@ -14,7 +14,7 @@ const csvStringifier = createCsvStringifier({
 });
 
 // File Connections
-const photosFile = path.join(__dirname, '../data/sample-photo.csv');
+const photosFile = path.join(__dirname, '../data/answers_photos.csv');
 const photosResultsFile = path.join(__dirname, '../data-clean/photos-clean.csv')
 
 // Streams
@@ -31,6 +31,11 @@ class CSVCleaner extends Transform {
     for (const key in chunk) {
       let trimmed = key.trim();
       cleaned[trimmed] = chunk[key];
+    }
+
+    // photo checker
+    if (cleaned.url.length === 0) {
+      cleaned.url = "https://images.unsplash.com/photo-1530519729491-aea5b51d1ee1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
     }
 
     // use csvStringifier to turn our chunk into a csv string
