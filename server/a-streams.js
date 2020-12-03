@@ -19,7 +19,7 @@ const csvStringifier = createCsvStringifier({
 });
 
 // File Connections
-const answersFile = path.join(__dirname, '../data/sample.csv');
+const answersFile = path.join(__dirname, '../data/answers.csv');
 const answersResultsFile = path.join(__dirname, '../data-clean/answers-clean.csv')
 
 // Streams
@@ -36,6 +36,18 @@ class CSVCleaner extends Transform {
     for (const key in chunk) {
       let trimmed = key.trim();
       cleaned[trimmed] = chunk[key];
+    }
+
+    // email checks
+    if (cleaned.answerer_email === 'null') {
+      cleaned.answerer_email = 'first.last@gmail.com'
+    }
+    
+    // reported checks
+    if (cleaned.reported.toLowerCase() === 'true') {
+      cleaned.reported = 1;
+    } else if (cleaned.reported.toLowerCase() === 'false') {
+      cleaned.reported = 0;
     }
 
     // use csvStringifier to turn our chunk into a csv string

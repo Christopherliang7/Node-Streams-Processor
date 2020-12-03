@@ -1,11 +1,11 @@
 id, question_id, body, date_written, answerer_name, answerer_email, reported, helpful
-1,36,"Supposedly suede, but I think its synthetic","2018-01-17","sillyguy","first.last@gmail.com",0,1
-2,13,"Some kind of recycled rubber, works great!","2019-03-18","marcanthony","first.last@gmail.com",0,2
-3,23,"Some kind of recycled rubber, works great!","2018-03-18","iluvdogz","first.last@gmail.com",0,3
-4,26,"No","2018-08-08","Seller","first.last@gmail.com",0,4
-5,1,"Something pretty soft but I can't be sure","2018-01-04","metslover","first.last@gmail.com",0,5
-6,28,"I wouldn't machine wash it","2019-01-17","warmkid","first.last@cbs.com",1,6
-7,1,"Its the best! Seriously magic fabric","2018-01-04","metslover","first.last@gmail.com",0,7
+1,36,"Supposedly suede, but I think its synthetic","2018-01-17","sillyguy",null,TRUE,1
+2,13,"Some kind of recycled rubber, works great!","2019-03-18","marcanthony",null,True,2
+3,23,"Some kind of recycled rubber, works great!","2018-03-18","iluvdogz",null,true,3
+4,26,"No","2018-08-08","Seller","first.last@gmail.com",false,4
+5,1,"Something pretty soft but I can't be sure","2018-01-04","metslover","first.last@gmail.com",false,5
+6,28,"I wouldn't machine wash it","2019-01-17","warmkid","first.last@cbs.com",False,6
+7,1,"Its the best! Seriously magic fabric","2018-01-04","metslover","first.last@gmail.com",FALSE,7
 8,1,"DONT BUY IT! It's bad for the environment","2018-01-04","metslover","first.last@gmail.com",0,8
 9,28,"Only if you want to ruin it!","2019-01-17","warmkid","first.last@cbs.com",1,9
 10,34,"I've thrown it in the wash and it seems fine","2017-01-04","skilover","first.last@cbs.com",0,1
