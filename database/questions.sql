@@ -36,6 +36,8 @@ FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS
 (id, product_id, body, date_written, asker_name, asker_email, reported, helpful);
+-- Query OK, 3521634 rows affected, 4 warnings (19.85 sec)
+-- Records: 3521634  Deleted: 0  Skipped: 0  Warnings: 4
 
 LOAD DATA LOCAL INFILE '/Users/christopherliang/Desktop/Systems\ Design\ Capstone/starting-point/data-clean/answers-clean.csv'
 INTO TABLE Answers

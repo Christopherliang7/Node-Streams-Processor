@@ -1,5 +1,5 @@
 id, product_id, body, date_written, asker_name, asker_email, reported, helpful
-1,1,"What fabric is the top made of?","2018-01-04","yankeelover","first.last@gmail.com",True,1
+1,1,"What, fabric, is the, top made of?","2018-01-04","yankeelover","first.last@gmail.com",True,1
 2,1,"HEY THIS IS A WEIRD QUESTION!!!!?","2019-04-28","jbilas","first.last@gmail.com",TRUE,4
 3,1,"Does this product run big or small?","2019-01-17","jbilas","first.last@gmail.com",true,8
 4,1,"How long does it last?","2019-07-06","funnygirl","first.last@gmail.com",False,6

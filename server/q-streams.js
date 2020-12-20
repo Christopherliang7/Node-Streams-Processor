@@ -5,7 +5,6 @@ const createCsvStringifier = require("csv-writer").createObjectCsvStringifier;
 const Transform = require("stream").Transform;
 
 const csvStringifier = createCsvStringifier({
-  // Headers
   header: [
     { id: "id", title: "id" },
     { id: "product_id", title: "product_id" },
@@ -18,46 +17,45 @@ const csvStringifier = createCsvStringifier({
   ],
 });
 
-// File Connections
 const questionsFile = path.join(__dirname, '../data/questions.csv');
 const questionsResultsFile = path.join(__dirname, '../data-clean/questions-clean.csv')
 
-// Streams
 const myReadQuestionsStream = fs.createReadStream(questionsFile, 'utf-8')
 const myWriteQuestionsStream = fs.createWriteStream(questionsResultsFile);
 
-// Data Cleaner Function
-class CSVCleaner extends Transform {
+class QuestionsCleaner extends Transform {
   constructor(options) {
     super(options);
   }
   _transform(chunk, encoding, next) {
     let cleaned = {}
-    for (const key in chunk) {
+    for (let key in chunk) {
       let trimmed = key.trim();
       cleaned[trimmed] = chunk[key];
     }
 
+    // Remove commas to assure proper data handling during load process
+    if (cleaned.body) {
+      cleaned.body = cleaned.body.replace(/,/g, '\\,');
+    }
+
+    // Checks to make sure true and false = 0 and 1
     if (cleaned.reported.toLowerCase() === 'true') {
       cleaned.reported = 1;
     } else if (cleaned.reported.toLowerCase() === 'false') {
       cleaned.reported = 0;
     }
 
-    // use csvStringifier to turn our chunk into a csv string
     let stringifiedRecord = csvStringifier.stringifyRecords([cleaned]);
     this.push(stringifiedRecord);
     next();
   }
 }
 
-// Transform function
-const transformer = new CSVCleaner({ writableObjectMode: true });
+const transformer = new QuestionsCleaner({ writableObjectMode: true });
 
-// Write Referencing Headers
 myWriteQuestionsStream.write(csvStringifier.getHeaderString());
 
-// Initialization
 myReadQuestionsStream
   .pipe(csv())
   .pipe(transformer)
